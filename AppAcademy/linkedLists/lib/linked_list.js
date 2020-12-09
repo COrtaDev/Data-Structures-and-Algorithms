@@ -20,7 +20,6 @@
 // Let's Code!
 // -----------
 
-// TODO: Implement a Linked List Node class here
 class Node {
     constructor(val) {
         this.value = val;
@@ -29,7 +28,6 @@ class Node {
 
 }
 
-// TODO: Implement a Singly Linked List class here
 class LinkedList {
     constructor() {
         this.head = null;
@@ -37,57 +35,60 @@ class LinkedList {
         this.length = 0;
     }
 
-    // TODO: Implement the addToTail method here
+    // we create a newNode
+    // we set up a condition to check to see if this will be the first node based on the value of this.head
+    // if this.head is falsey (aka: we have an empty list...), we assign the newNode to be this.head
+    // otherwise, we set the next property of the current tail node to the new node...
+    // ...and we reassign the current tail to be new node as well.
+    // increment the length since this method 'adds' to the length of the list...
+    //... and finally, return this object. (In the demoList.js file, this is the object called myList.)
     addToTail(val) {
-        // we create a newNode
         let newNode = new Node(val);
-        // we set up a condition to check to see if this will be the first node based on the value of this.head
-        // if this.head is falsey (aka: we have an empty list...), we assign the newNode to be this.head
         if (!this.head) this.head = newNode;
-        // otherwise, we set the next property of the current tail node to the new node...
         else this.tail.next = newNode;
-        // ...and we reassign the current tail to be new node as well.
         this.tail = newNode;
-        // increment the length since this method 'adds' to the length of the list...
         this.length++;
-        //... and finally, return this object. (In the demoList.js file, this is the object called myList.)
         return this;
     }
 
-    // TODO: Implement the removeTail method here
+    // to get there, we must iterate through the list, starting at the head.
+    // the variable 'current' points to our position in the list and is initially the head of the list.
+    // the new tail will be the node for which the next property of it's next property evaluates falsey...
+    // to get find it, we loop while the current node's next property evalutates truthy.
+    // once we reach the node for which the next property evaluates falsey, we exit the loop.
+    // we reassign this.tail to be the node right before we found the node who's next was falsey...
+    // shorten the length of the list since we have removed a node from it.
+    // set up a condition to check to see if our list is empty by checking to see if the length is falsey
+    // if it is empty, change the values of the head and tail to be null, its initial state.
+    //otherwise we should net the value of the node at the tail to be null, since it is the tail now...
+    //finally, we return the node we assigned to current node, back when we were looking for node who's next property had a falsey value.
     removeTail() {
         if (!this.head) return undefined;
-        // to get there, we must iterate through the list, starting at the head.
-        // the variable 'current' points to our position in the list and is initially the head of the list.
         let currentNode = this.head;
-        // the new tail will be the node for which the next property of it's next property evaluates falsey...
-        // to get find it, we loop while the current node's next property evalutates truthy.
         let newTail;
         while (currentNode.next) {
             newTail = currentNode;
             currentNode = currentNode.next;
-            // once we reach the node for which the next property evaluates falsey, we exit the loop.
         }
-        // we reassign this.tail to be the node right before we found the node who's next was falsey...
         this.tail = newTail;
-        // shorten the length of the list since we have removed a node from it.
         this.length--;
-        // set up a condition to check to see if our list is empty by checking to see if the length is falsey
         if (!this.length) {
-            // if it is empty, change the values of the head and tail to be null, its initial state.
             this.head = null;
             this.tail = null;
-        } else {
-            //otherwise we should net the value of the node at the tail to be null, since it is the tail now...
-            this.tail.next = null;
-        }
-        //finally, we return the node we assigned to current node, back when we were looking for node who's next property had a falsey value.
+        } else { this.tail.next = null; }
         return currentNode;
     }
 
     // TODO: Implement the addToHead method here
     addToHead(val) {
-
+        //startup a newNode:
+        let newNode = new Node(val);
+        //we need to check to see if we have an empty list:
+        if (!this.head) {
+            //if we do let's set the head and tail to the newNode we just made
+            this.head = newNode;
+            this.tail = newNode;
+        }
     }
 
     // TODO: Implement the removeHead method here
