@@ -88,7 +88,14 @@ class LinkedList {
             //if we do let's set the head and tail to the newNode we just made
             this.head = newNode;
             this.tail = newNode;
+        } else {
+            // otherwise we don't need to worry about the tail, just the head
+            //move the current head into the .next postion of the new node and make the new node the new head
+            newNode.next = this.head;
+            this.head = newNode;
         }
+        this.length++;
+        return this
     }
 
     // TODO: Implement the removeHead method here
