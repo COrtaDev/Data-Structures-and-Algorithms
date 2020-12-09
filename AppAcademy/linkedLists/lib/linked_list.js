@@ -136,9 +136,24 @@ class LinkedList {
         return true;
     }
 
-    // TODO: Implement the insert method here
     insert(index, val) {
-
+        if (index < 0 || index >= this.length) return false;
+        let node = this.head;
+        let previous;
+        while (index > 0) {
+            previous = node;
+            node = node.next;
+            index--;
+        }
+        let newNode = new Node(val);
+        if (previous) {
+            previous.next = newNode;
+            newNode.next = node;
+        } else {
+            newNode.next = node;
+        }
+        this.length++;
+        return true;
     }
 
     // TODO: Implement the remove method here
