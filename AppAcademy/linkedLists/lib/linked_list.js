@@ -97,14 +97,6 @@ class LinkedList {
         return this
     }
 
-    // TODO: Implement the removeHead method here
-    // removeHead
-    // ✓ Should return undefined if the list is empty
-    // 2) Should remove head node from the list when removeHead is called
-    // 3) Should reassign the head pointer to the next node in the list
-    // 4) Should update the length property after removing the head node
-    // 5) Should reassign both the head and tail pointers to null when head is removed from a list of only one node
-    // 6) Should return the removed head node when removeHead is called
     removeHead() {
         if (!this.head) return undefined;
         let tempHead = this.head;
@@ -114,14 +106,23 @@ class LinkedList {
         return tempHead;
     }
 
-    // TODO: Implement the contains method here
     contains(target) {
-
+        let node = this.head;
+        while (node) {
+            if (node.value === target) return true;
+            node = node.next;
+        }
+        return false;
     }
 
-    // TODO: Implement the get method here
     get(index) {
-
+        if (index < 0 || index >= this.length) return null;
+        let node = this.head;
+        while (index > 0) {
+            node = node.next;
+            index--;
+        }
+        return node;
     }
 
     // TODO: Implement the set method here
@@ -139,9 +140,8 @@ class LinkedList {
 
     }
 
-    // TODO: Implement the size method here
     size() {
-
+        return this.length;
     }
 }
 
