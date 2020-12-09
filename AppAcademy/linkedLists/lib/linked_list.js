@@ -79,18 +79,17 @@ class LinkedList {
         return currentNode;
     }
 
-    // TODO: Implement the addToHead method here
+    //startup a newNode:
+    //we need to check to see if we have an empty list:
+    //if we do let's set the head and tail to the newNode we just made
+    // otherwise we don't need to worry about the tail, just the head
+    //move the current head into the .next postion of the new node and make the new node the new head
     addToHead(val) {
-        //startup a newNode:
         let newNode = new Node(val);
-        //we need to check to see if we have an empty list:
         if (!this.head) {
-            //if we do let's set the head and tail to the newNode we just made
             this.head = newNode;
             this.tail = newNode;
         } else {
-            // otherwise we don't need to worry about the tail, just the head
-            //move the current head into the .next postion of the new node and make the new node the new head
             newNode.next = this.head;
             this.head = newNode;
         }
@@ -99,8 +98,20 @@ class LinkedList {
     }
 
     // TODO: Implement the removeHead method here
+    // removeHead
+    // ✓ Should return undefined if the list is empty
+    // 2) Should remove head node from the list when removeHead is called
+    // 3) Should reassign the head pointer to the next node in the list
+    // 4) Should update the length property after removing the head node
+    // 5) Should reassign both the head and tail pointers to null when head is removed from a list of only one node
+    // 6) Should return the removed head node when removeHead is called
     removeHead() {
-
+        if (!this.head) return undefined;
+        let tempHead = this.head;
+        this.head = this.head.next;
+        this.length--;
+        if (this.length === 0) this.tail = null;
+        return tempHead;
     }
 
     // TODO: Implement the contains method here
